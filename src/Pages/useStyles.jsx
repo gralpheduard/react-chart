@@ -14,12 +14,7 @@ const useStyles = makeStyles((theme) => ({
         fontSize: 12
     },
     inputProps3:{
-        "& label.Mui-focused": {
-            color: theme.palette.third
-          },
-          "& .MuiInput-underline:after": {
-            borderBottomColor: theme.palette.third
-          },
+
     }
   }));
 

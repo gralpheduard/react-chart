@@ -8,7 +8,7 @@ const NavBar = () =>{
         <AppBar color="textSecondary" position="static"className={classes.root}>
             <Toolbar>
                 <Typography variant="h6" color="third"className={classes.title}>
-                Kulots
+                Charts
                 </Typography>
             </Toolbar>
         </AppBar>
