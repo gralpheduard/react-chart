@@ -5,27 +5,36 @@ import useStyles from './useStyles'
 
 const Home = () =>{
     const classes = useStyles();
-    const [card, setCard] = useState({
+    const [cardName, setCardName] = useState({
                         name1:"", 
                         name2:"", 
                         name3:"", 
-                        card1: "", 
-                        card2: "", 
-                        card3:""})
-    
-    const onChange = e =>{
-        setCard({...card,[e.target.name] : e.target.value});
+                    })
+    const [card, setCard] = useState({
+        card1: "", 
+        card2: "", 
+        card3:""
+    })
+
+    const onChangeName = e =>{
+        setCardName({...cardName,[e.target.name] : e.target.value});
     }
 
+    const onChange = e =>{
+        setCard({...card,[e.target.name] : e.target.value.replace(/\D/,'')});
+    }
+
+
+    
     const textField1 = () =>{
         return (
             <div>    
             <TextField 
                 id="standard-basic" 
                 label="Name" 
-                onChange={onChange}
+                onChange={onChangeName}
                 name="name1"
-                value={card.name1}
+                value={cardName.name1}
                 InputLabelProps={{
                     className: classes.textInput1,
                 }}
@@ -52,9 +61,9 @@ const Home = () =>{
                 <TextField 
                     id="standard-basic" 
                     label="Name" 
-                    onChange={onChange}
+                    onChange={onChangeName}
                     name="name2"
-                    value={card.name2}
+                    value={cardName.name2}
                     InputLabelProps={{
                         className: classes.textInput2,
                     }}
@@ -80,9 +89,9 @@ const Home = () =>{
                 <TextField 
                     id="standard-basic" 
                     label="Name" 
-                    onChange={onChange}
+                    onChange={onChangeName}
                     name="name3"
-                    value={card.name3}
+                    value={cardName.name3}
                     InputLabelProps={{
                         className: classes.textInput3,
                     }}
@@ -116,9 +125,9 @@ const Home = () =>{
                 card3 = {card.card3}
             />
             <ChartSection 
-                n1={card.name1}
-                n2={card.name2}
-                n3={card.name3}
+                n1={cardName.name1}
+                n2={cardName.name2}
+                n3={cardName.name3}
                 b1 = {card.card1}
                 b2 = {card.card2}
                 b3 = {card.card3}

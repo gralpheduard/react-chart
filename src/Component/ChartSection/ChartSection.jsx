@@ -6,16 +6,17 @@ const ChartSection = (props) =>{
     const [state, setState] = React.useState({
         chart: '',
       });
+
     useEffect(() => {
         setData(props);
       }, [props]);
-      console.log(state)
+
     const handleChange = (event) => {
-    const name = event.target.name;
-    setState({
-        ...state,
-        [name]: event.target.value,
-    });
+        const name = event.target.name;
+        setState({
+            ...state,
+            [name]: event.target.value,
+        });
     };
 
     const bar = () =>{
@@ -67,20 +68,21 @@ const ChartSection = (props) =>{
 
     const doughnut = () =>{
         return (
-            <Doughnut  data={{
-                labels: [data.n1, data.n2, data.n3],
-                datasets:[{
-                    data: [data.b1, data.b2, data.b3],
-                    backgroundColor:[
-                        'rgba(0,0,255,0.5)',
-                        'rgba(0,255, 0,0.5)',
-                        'rgba(255,0,0,0.5)'
-                    ],
-                    label: "Line Chart",
-                    borderColor:'#000000',
-                    fill: true,
-                }],
-            }} /> 
+            <Doughnut  
+                data={{
+                    labels: [data.n1, data.n2, data.n3],
+                    datasets:[{
+                        data: [data.b1, data.b2, data.b3],
+                        backgroundColor:[
+                            'rgba(0,0,255,0.5)',
+                            'rgba(0,255, 0,0.5)',
+                            'rgba(255,0,0,0.5)'
+                        ],
+                        label: "Line Chart",
+                        borderColor:'#000000',
+                        fill: true,
+                    }],
+                }} /> 
         )
     }
 
@@ -94,7 +96,7 @@ const ChartSection = (props) =>{
                         name: 'chart',
                     }}
                 >
-                    <option value="">Select a chart</option>
+                    <option value="" disabled>Select a chart</option>
                     <option value={'bar'}>Bar</option>
                     <option value={'line'}>Line</option>
                     <option value={'doughnut'}>Doughnut</option>
@@ -105,7 +107,9 @@ const ChartSection = (props) =>{
                 ? bar()
                 : (state.chart === 'line')
                 ? line()
-                : doughnut()
+                : (state.chart === 'doughnut')
+                ? doughnut()
+                : ""
             }
             
         </div>
