@@ -1,10 +1,17 @@
-import React from 'react';
-import {Grid, CardContent, Card} from '@material-ui/core'
+import React, {useContext}  from 'react';
+import {Grid, CardContent, Card, TextField} from '@material-ui/core'
 import CountUp from 'react-countup'
 import useStyles from './useStyles'
+import {inputContext} from '../../Context/inputContext'
 
-const InputFields = ({textField1, textField2, textField3, card1, card2, card3, n1, n2, n3}) =>{
-  
+const InputFields = () =>{
+    const {cardName, setCardName, card, setCard} = useContext(inputContext)
+    const onChangeName = e =>{
+        setCardName({...cardName,[e.target.name] : e.target.value});
+    }
+    const onChange = e =>{
+        setCard({...card,[e.target.name] : e.target.value.replace(/\D/,'')});
+    }
     const classes = useStyles();
     return (
         <div>
@@ -12,15 +19,30 @@ const InputFields = ({textField1, textField2, textField3, card1, card2, card3, n
                 <Grid item xs={12} sm={4}>
                     <Card variant="outlined"  className={classes.card1}>
                         <CardContent>
-                            {textField1}
+                            <TextField 
+                                id="standard-basic" 
+                                label="Name" 
+                                onChange={onChangeName}
+                                name="name1"
+                                value={cardName.name1}
+                                color="primary"
+                            />            
+                            <TextField 
+                                id="standard-basic" 
+                                label="Value" 
+                                onChange={onChange}
+                                name="card1"
+                                value={card.card1}
+                                color="primary"
+                            />
                         </CardContent>
                         <CardContent>
-                            {n1}
+                            {cardName.name1}
                         </CardContent>
                         <CardContent>
                             <CountUp
                                 start={0}
-                                end={card1}
+                                end={card.card1}
                                 duration={3}
                                 separator=","
                             />
@@ -31,15 +53,30 @@ const InputFields = ({textField1, textField2, textField3, card1, card2, card3, n
                 <Grid item xs={12} sm={4}>
                     <Card variant="outlined" className={classes.card2}>
                         <CardContent>
-                            {textField2}
+                            <TextField 
+                                id="standard-basic" 
+                                label="Name" 
+                                onChange={onChangeName}
+                                name="name2"
+                                value={cardName.name2}
+                                color="secondary"
+                            />   
+                            <TextField 
+                                id="standard-basic" 
+                                label="Value" 
+                                onChange={onChange}
+                                name="card2"
+                                value={card.card2}
+                                color="secondary"
+                            />
                         </CardContent>
                         <CardContent>
-                            {n2}
+                            {cardName.name2}
                         </CardContent>
                         <CardContent>
                             <CountUp
                                 start={0}
-                                end={card2}
+                                end={card.card2}
                                 duration={3}
                                 separator=","
                             />
@@ -50,15 +87,32 @@ const InputFields = ({textField1, textField2, textField3, card1, card2, card3, n
                 <Grid item xs={12} sm={4}>
                     <Card variant="outlined" className={classes.card3}>
                         <CardContent>
-                            {textField3}
+                        <TextField 
+                            id="standard-basic" 
+                            label="Name" 
+                            onChange={onChangeName}
+                            name="name3"
+                            value={cardName.name3}
+                            color="#000000"
+                        />   
+                        <TextField 
+                            id="standard-basic" 
+                            label="Value" 
+                            onChange={onChange}
+                            name="card3"
+                            value={card.card3}
+                            InputLabelProps={{
+                                className: classes.textInput3,
+                            }}
+                        />
                         </CardContent>
                         <CardContent>
-                            {n3}
+                            {cardName.name3}
                         </CardContent>
                         <CardContent>
                             <CountUp
                                 start={0}
-                                end={card3}
+                                end={card.card3}
                                 duration={3}
                                 separator=","
                             />

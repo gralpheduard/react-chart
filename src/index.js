@@ -3,10 +3,13 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+import TextProvider from './Context/inputContext'
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <TextProvider>
+      <App />
+    </TextProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );
